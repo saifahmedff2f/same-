@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio — Photoshop Projects</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #1a1a1a;
+            --tertiary-bg: #242424;
+            --accent-blue: #00aff4;
+            --accent-cyan: #00f5ff;
+            --accent-pink: #ff006e;
+            --accent-purple: #5865f2;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --text-muted: #7a7a7a;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1a1a1a, #242424);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .user-badge {
+            background: rgba(88, 101, 242, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-logout {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--accent-purple), #4752c4);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(88, 101, 242, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .designs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .design-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(36, 36, 66, 0.6));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .design-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 40px rgba(0, 245, 255, 0.15);
+        }
+
+        .design-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 175, 244, 0.1), rgba(255, 0, 110, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .design-content {
+            padding: 20px;
+        }
+
+        .design-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .design-type {
+            display: inline-block;
+            font-size: 10px;
+            color: var(--accent-cyan);
+            background: rgba(0, 245, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .design-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .design-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .design-date {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .design-views {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(88, 101, 242, 0.2));
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(36, 36, 66, 0.9));
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideInUp 0.3s ease-out;
+            position: relative;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 175, 244, 0.1), rgba(255, 0, 110, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            margin-bottom: 24px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-details {
+            margin-top: 24px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 24px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 245, 255, 0.2);
+            border-color: var(--accent-cyan);
+        }
+
+        .download-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .download-label {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .download-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .download-btn {
+            padding: 10px 12px;
+            background: rgba(88, 101, 242, 0.15);
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            color: var(--accent-blue);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: rgba(0, 245, 255, 0.2);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 20px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 20px;
+            }
+            .designs-container {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-left">
+        <a href="index.html" class="logo">DESIGN PORTFOLIO</a>
+        <div class="user-badge">
+            <i class="fa-solid fa-palette"></i>
+            <span id="userName" style="margin-left: 8px;">Designer</span>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="btn-logout" onclick="logout()">
+            <i class="fa-solid fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+</header>
+
+<div class="container">
+    <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+            <h2 class="section-title" style="margin-bottom: 0;">My Designs</h2>
+            <button class="filter-btn" onclick="openUploadModal()" style="background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(88, 101, 242, 0.2)); border-color: var(--accent-cyan); color: var(--accent-cyan);">
+                <i class="fa-solid fa-camera"></i> Add Picture
+            </button>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+            <button class="filter-btn active" onclick="filterDesigns('all')">All</button>
+            <button class="filter-btn" onclick="filterDesigns('branding')">Branding</button>
+            <button class="filter-btn" onclick="filterDesigns('ui')">UI/UX</button>
+            <button class="filter-btn" onclick="filterDesigns('print')">Print</button>
+            <button class="filter-btn" onclick="filterDesigns('web')">Web</button>
+        </div>
+
+        <div class="designs-container" id="designsContainer"></div>
+    </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div id="uploadModal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+        <h3 class="modal-title">Add Picture</h3>
+        
+        <div style="margin-bottom: 24px;">
+            <label style="color: var(--text-secondary); font-size: 12px; text-transform: uppercase; margin-bottom: 12px; display: block;">Upload Image</label>
+            <div id="uploadZone" style="border: 2px dashed var(--accent-cyan); border-radius: 12px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: rgba(0, 245, 255, 0.05);" onclick="document.getElementById('imageInput').click()">
+                <i class="fa-solid fa-image" style="font-size: 32px; color: var(--accent-cyan); margin-bottom: 12px; display: block;"></i>
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">Click to upload or drag image</p>
+                <p style="color: var(--text-muted); font-size: 12px;">PNG, JPG, WebP (Max 5MB)</p>
+            </div>
+            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+        </div>
+
+        <div id="imagePreview" style="display: none; margin-bottom: 24px;">
+            <img id="previewImage" style="width: 100%; border-radius: 12px; max-height: 200px; object-fit: cover;">
+            <p style="color: var(--text-secondary); font-size: 11px; margin-top: 8px;">Image will be available in 4 sizes for download</p>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="color: var(--text-secondary); font-size: 12px; text-transform: uppercase; margin-bottom: 8px; display: block;">Title (Optional)</label>
+            <input type="text" id="designTitle" placeholder="e.g., My Design" style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(88, 101, 242, 0.2); border-radius: 8px; color: var(--text-primary); font-size: 14px; font-family: 'Outfit', sans-serif;">
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="color: var(--text-secondary); font-size: 12px; text-transform: uppercase; margin-bottom: 8px; display: block;">Category</label>
+            <select id="designCategory" style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(88, 101, 242, 0.2); border-radius: 8px; color: var(--text-primary); font-size: 14px; font-family: 'Outfit', sans-serif; cursor: pointer;">
+                <option value="branding">Branding</option>
+                <option value="ui">UI/UX</option>
+                <option value="print">Print</option>
+                <option value="web">Web</option>
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+            <button onclick="uploadDesign()" style="flex: 1; padding: 12px 20px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; text-transform: uppercase; transition: all 0.3s ease;">Upload</button>
+            <button onclick="closeUploadModal()" style="flex: 1; padding: 12px 20px; background: transparent; border: 1px solid rgba(88, 101, 242, 0.4); color: var(--accent-blue); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; text-transform: uppercase;">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- DESIGN MODAL -->
+<div id="designModal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeDesignModal()">&times;</button>
+        <div class="modal-image" id="modalImage"></div>
+        <h3 class="modal-title" id="modalTitle">Design Title</h3>
+        
+        <div class="modal-details">
+            <div class="detail-row">
+                <span class="detail-label">Category</span>
+                <span class="detail-value" id="modalCategory">Category</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Date Created</span>
+                <span class="detail-value" id="modalDate">Date</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status</span>
+                <span class="detail-value" id="modalStatus">Status</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Views</span>
+                <span class="detail-value" id="modalViews">0</span>
+            </div>
+        </div>
+
+        <div class="modal-description" id="modalDescription">Design description</div>
+
+        <div class="download-section">
+            <p class="download-label">FORMAT</p>
+            <div class="download-buttons">
+                <button class="download-btn" onclick="setFormat('jpg')"><i class="fa-solid fa-download"></i> JPG</button>
+                <button class="download-btn" onclick="setFormat('png')"><i class="fa-solid fa-download"></i> PNG</button>
+                <button class="download-btn" onclick="setFormat('webp')"><i class="fa-solid fa-download"></i> WebP</button>
+            </div>
+
+            <p class="download-label">SIZE</p>
+            <div class="download-buttons" style="grid-template-columns: 1fr 1fr;">
+                <button class="download-btn" onclick="downloadImageSize('small')">Small (1000x667px)</button>
+                <button class="download-btn" onclick="downloadImageSize('medium')">Medium (1500x1000px)</button>
+                <button class="download-btn" onclick="downloadImageSize('large')">Large (2000x1333px)</button>
+                <button class="download-btn" onclick="downloadImageSize('original')">Original</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const designsData = { designs: [] };
+    let currentFilter = 'all';
+    let currentDesignId = null;
+    let currentDownloadFormat = 'jpg';
+    let uploadedImageData = null;
+
+    window.addEventListener('load', function() {
+        loadUserData();
+        loadDesignData();
+        renderDesigns();
+    });
+
+    function loadUserData() {
+        const userName = localStorage.getItem('userName') || 'Designer';
+        document.getElementById('userName').textContent = userName;
+    }
+
+    function loadDesignData() {
+        const saved = localStorage.getItem('designData');
+        if (saved) {
+            designsData.designs = JSON.parse(saved);
+        }
+    }
+
+    function saveDesignData() {
+        localStorage.setItem('designData', JSON.stringify(designsData.designs));
+    }
+
+    function renderDesigns() {
+        const container = document.getElementById('designsContainer');
+        const filtered = currentFilter === 'all' 
+            ? designsData.designs 
+            : designsData.designs.filter(d => d.category === currentFilter);
+
+        if (filtered.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        container.innerHTML = filtered.map(design => `
+            <div class="design-card" onclick="openDesignModal(${design.id})">
+                <div class="design-image" style="background: ${design.image ? `url('${design.image}')` : 'none'}; background-size: cover; background-position: center;">
+                    ${design.image ? '' : design.icon}
+                </div>
+                <div class="design-content">
+                    <span class="design-type">${design.category}</span>
+                    <h3 class="design-title">${design.title}</h3>
+                    <p class="design-description">${design.description}</p>
+                    <div class="design-meta">
+                        <span class="design-date">${new Date(design.date).toLocaleDateString()}</span>
+                        <div class="design-views">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>${design.views}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterDesigns(category) {
+        currentFilter = category;
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        renderDesigns();
+    }
+
+    function openUploadModal() {
+        document.getElementById('uploadModal').classList.add('active');
+    }
+
+    function closeUploadModal() {
+        document.getElementById('uploadModal').classList.remove('active');
+        document.getElementById('imageInput').value = '';
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('designTitle').value = '';
+        document.getElementById('designCategory').value = 'branding';
+        uploadedImageData = null;
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Image size must be less than 5MB');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            uploadedImageData = e.target.result;
+            document.getElementById('previewImage').src = uploadedImageData;
+            document.getElementById('imagePreview').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function uploadDesign() {
+        const title = document.getElementById('designTitle').value.trim() || 'My Design';
+        const category = document.getElementById('designCategory').value;
+
+        if (!uploadedImageData) {
+            alert('Please upload an image');
+            return;
+        }
+
+        const newDesign = {
+            id: Math.max(...designsData.designs.map(d => d.id), 0) + 1,
+            title: title,
+            category: category,
+            icon: '🎨',
+            description: 'Custom design from collection',
+            date: new Date().toISOString().split('T')[0],
+            status: 'Completed',
+            views: 1,
+            image: uploadedImageData
+        };
+
+        designsData.designs.push(newDesign);
+        saveDesignData();
+        renderDesigns();
+        closeUploadModal();
+        
+        const alert = document.createElement('div');
+        alert.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(49, 162, 76, 0.15); border: 1px solid rgba(49, 162, 76, 0.3); color: #6fff85; padding: 14px 16px; border-radius: 8px; z-index: 3000;';
+        alert.textContent = '✓ Picture added successfully!';
+        document.body.appendChild(alert);
+        setTimeout(() => alert.remove(), 3000);
+    }
+
+    function openDesignModal(id) {
+        const design = designsData.designs.find(d => d.id === id);
+        if (!design) return;
+
+        const modalImage = document.getElementById('modalImage');
+        if (design.image) {
+            modalImage.style.backgroundImage = `url('${design.image}')`;
+            modalImage.textContent = '';
+        } else {
+            modalImage.style.backgroundImage = 'none';
+            modalImage.textContent = design.icon;
+        }
+
+        document.getElementById('modalTitle').textContent = design.title;
+        document.getElementById('modalCategory').textContent = design.category.toUpperCase();
+        document.getElementById('modalDate').textContent = new Date(design.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('modalStatus').textContent = design.status;
+        document.getElementById('modalViews').textContent = design.views.toLocaleString();
+        document.getElementById('modalDescription').textContent = design.description;
+
+        currentDesignId = id;
+        document.getElementById('designModal').classList.add('active');
+    }
+
+    function closeDesignModal() {
+        document.getElementById('designModal').classList.remove('active');
+    }
+
+    function setFormat(format) {
+        currentDownloadFormat = format;
+    }
+
+    function downloadImageSize(size) {
+        const design = designsData.designs.find(d => d.id === currentDesignId);
+        if (!design || !design.image) {
+            alert('Image not available for download');
+            return;
+        }
+
+        const image = new Image();
+        image.onload = function() {
+            const sizes = {
+                small: { width: 1000, height: 667 },
+                medium: { width: 1500, height: 1000 },
+                large: { width: 2000, height: 1333 },
+                original: { width: image.width, height: image.height }
+            };
+
+            const selectedSize = sizes[size];
+            const canvas = document.createElement('canvas');
+            canvas.width = selectedSize.width;
+            canvas.height = selectedSize.height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(image, 0, 0, selectedSize.width, selectedSize.height);
+
+            let mimeType = 'image/jpeg';
+            let extension = 'jpg';
+            let quality = 0.95;
+
+            if (currentDownloadFormat === 'png') {
+                mimeType = 'image/png';
+                extension = 'png';
+            } else if (currentDownloadFormat === 'webp') {
+                mimeType = 'image/webp';
+                extension = 'webp';
+            }
+
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${design.title.replace(/\s+/g, '_')}_${size}.${extension}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, mimeType, quality);
+        };
+        image.src = design.image;
+    }
+
+    document.getElementById('designModal')?.addEventListener('click', function(e) {
+        if (e.target.id === 'designModal') {
+            closeDesignModal();
+        }
+    });
+
+    document.getElementById('uploadModal')?.addEventListener('click', function(e) {
+        if (e.target.id === 'uploadModal') {
+            closeUploadModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDesignModal();
+            closeUploadModal();
+        }
+    });
+
+    function logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            localStorage.removeItem('userName');
+            localStorage.removeItem('designData');
+            window.location.href = 'login.html';
+        }
+    }
+</script>
+
+</body>
+</html>
