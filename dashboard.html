@@ -90,6 +90,28 @@
             gap: 16px;
         }
 
+        .btn-gallery {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(88, 101, 242, 0.2));
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-gallery:hover {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.3), rgba(88, 101, 242, 0.3));
+            border-color: var(--accent-cyan);
+        }
+
         .btn-logout {
             padding: 8px 20px;
             background: linear-gradient(135deg, var(--accent-purple), #4752c4);
@@ -414,6 +436,9 @@
             </div>
         </div>
         <div class="header-right">
+            <a href="gallery.html" class="btn-gallery" title="View public gallery">
+                <i class="fas fa-images"></i> Public Gallery
+            </a>
             <button class="btn-logout" onclick="logout()">
                 <i class="fa-solid fa-sign-out-alt"></i> Logout
             </button>
